@@ -1,16 +1,14 @@
 package com.arzezan.quizapp.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(schema = "Quiz")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String questionTitle;
     private String option1;
@@ -19,4 +17,5 @@ public class Question {
     private String option4;
     private String answer;
     private String difficulty;
+    private String category;
 }
