@@ -8,7 +8,7 @@ import lombok.Data;
 @Table(schema = "Quiz")
 public class Question {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String questionTitle;
     private String option1;

@@ -22,4 +22,9 @@ public class QuestionService {
     public List<Question> getQuestionsByCategory(String category) {
         return questionDAO.getQuestionsByCategory(category);
     }
+
+    public String addQuestion(Question question) {
+        questionDAO.save(question);
+        return "success";
+    }
 }
