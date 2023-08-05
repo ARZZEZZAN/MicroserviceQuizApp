@@ -1,12 +1,14 @@
 package com.arzezan.quizapp.Controller;
 
+import com.arzezan.quizapp.Entity.Question;
+import com.arzezan.quizapp.Entity.QuestionWrapper;
+import com.arzezan.quizapp.Entity.Quiz;
 import com.arzezan.quizapp.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("quiz")
@@ -24,5 +26,9 @@ public class QuizController {
                                              @RequestParam int amount,
                                              @RequestParam String title) {
         return quizService.createQuiz(category, amount, title);
+    }
+    @GetMapping("get/{id}")
+    public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(@PathVariable Long id) {
+        return quizService.getQuizQuestions(id);
     }
 }
