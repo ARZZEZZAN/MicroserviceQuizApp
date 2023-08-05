@@ -12,3 +12,14 @@ CREATE TABLE Quiz.question (
                            category VARCHAR(10) NOT NULL,
                            difficulty VARCHAR(10) NOT NULL
 );
+
+CREATE TABLE Quiz.quiz (
+                               Id SERIAL PRIMARY KEY,
+                               title VARCHAR(10) NOT NULL
+);
+CREATE TABLE Quiz.quiz_questions (
+                                     quiz_id INT NOT NULL,
+                                     questions_id INT NOT NULL,
+                           foreign key (quiz_id) references quiz.quiz(id),
+                           foreign key (questions_id) references quiz.question(id)
+);
