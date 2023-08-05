@@ -5,6 +5,7 @@ import com.arzezan.quizapp.DAO.QuizDAO;
 import com.arzezan.quizapp.Entity.Question;
 import com.arzezan.quizapp.Entity.QuestionWrapper;
 import com.arzezan.quizapp.Entity.Quiz;
+import com.arzezan.quizapp.Entity.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,5 +60,22 @@ public class QuizService {
             e.printStackTrace();
         }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+    }
+
+    public ResponseEntity<Integer> calculateResult(Long id, List<Response> responses) {
+        try {
+            int right = 0;
+            Optional<Quiz> quiz = quizDAO.findById(id);
+            List<Question> questions = quiz.get().getQuestions();
+            for(int i = 0; i < responses.size(); i++) {
+                if(responses.get(i).getResponse().equals(questions.get(i).getAnswer())) {
+                    right++;
+                }
+            }
+            return new ResponseEntity<>(right, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(0, HttpStatus.BAD_REQUEST);
     }
 }
