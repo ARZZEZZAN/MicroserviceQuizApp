@@ -42,11 +42,11 @@ public class QuestionController {
         return questionService.getQuestionsIdByCategory(category, amount);
     }
 
-    @GetMapping("getQuestions")
+    @PostMapping("getQuestions")
     public ResponseEntity<List<QuestionWrapper>> getQuestionsFromId(@RequestBody List<Long> questionsId) {
         return questionService.getQuestionsFromId(questionsId);
     }
-    @GetMapping("getScore")
+    @PostMapping("getScore")
     public ResponseEntity<Integer> getScore(@RequestBody List<Response> responses) {
         return questionService.getScore(responses);
     }
