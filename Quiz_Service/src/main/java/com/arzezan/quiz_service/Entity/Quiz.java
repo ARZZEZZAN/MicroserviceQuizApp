@@ -16,8 +16,6 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @BatchSize(size = 150)
-    @Fetch(FetchMode.SELECT)
-    private List<Question> questions;
+    @ElementCollection
+    private List<Integer> questionsId;
 }
