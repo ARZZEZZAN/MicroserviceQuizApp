@@ -30,7 +30,7 @@ public class QuizService {
     public ResponseEntity<String> createQuiz(String category, int amount, String title) {
 
         try {
-            List<Integer> questionsId = quizInterface.getQuestionsIdByCategory(category, amount).getBody();
+            List<Long> questionsId = quizInterface.getQuestionsIdByCategory(category, amount).getBody();
             Quiz  quiz = new Quiz();
             quiz.setTitle(title);
             quiz.setQuestionsId(questionsId);
@@ -43,6 +43,14 @@ public class QuizService {
     }
 
     public ResponseEntity<List<QuestionWrapper>> getQuizQuestions(Long id) {
+        try {
+            Quiz quiz = quizDAO.findById(id).get();
+            List<Long> questionsId = quiz.getQuestionsId();
+            List<QuestionWrapper> questionWrappers = quizInterface.getQuestionsFromId(questionsId).getBody();
+            return new ResponseEntity<>(questionWrappers, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
 

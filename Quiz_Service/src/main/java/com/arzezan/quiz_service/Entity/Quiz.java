@@ -17,5 +17,5 @@ public class Quiz {
     private Long id;
     private String title;
     @ElementCollection
-    private List<Integer> questionsId;
+    private List<Long> questionsId;
 }

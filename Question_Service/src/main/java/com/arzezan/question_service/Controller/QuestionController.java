@@ -38,7 +38,7 @@ public class QuestionController {
     }
 
     @GetMapping("generate")
-    public ResponseEntity<List<Integer>> getQuestionsIdByCategory(@RequestParam String category, @RequestParam int amount) {
+    public ResponseEntity<List<Long>> getQuestionsIdByCategory(@RequestParam String category, @RequestParam int amount) {
         return questionService.getQuestionsIdByCategory(category, amount);
     }
 

@@ -52,7 +52,7 @@ public class QuestionService {
         return new ResponseEntity<>("Failed", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<List<Integer>> getQuestionsIdByCategory(String category, int amount) {
+    public ResponseEntity<List<Long>> getQuestionsIdByCategory(String category, int amount) {
         try {
             return new ResponseEntity<>(questionDAO.getQuestionsIdByCategory(category, amount), HttpStatus.OK);
         } catch (Exception e) {
